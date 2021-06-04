@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Design pattern | 春江花月夜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java常用设计模式—1单例模式1&lt;!-- more --&gt;  一个类的实例只有一个 饿汉式1234567891011public class Test01 &amp;#123;   &#x2F;&#x2F;    懒汉式，线程安全    private static Test01 test01 &#x3D; new Test01();&#x2F;&#x2F;因为是静态变量，在类加载的时候就进行了加载    &#x2F;&#x2F;所以线程安全    priva">
+  <meta name="description" content="java常用设计模式—1单例模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Design pattern">
 <meta property="og:url" content="http://example.com/2021/06/04/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="春江花月夜">
-<meta property="og:description" content="java常用设计模式—1单例模式1&lt;!-- more --&gt;  一个类的实例只有一个 饿汉式1234567891011public class Test01 &amp;#123;   &#x2F;&#x2F;    懒汉式，线程安全    private static Test01 test01 &#x3D; new Test01();&#x2F;&#x2F;因为是静态变量，在类加载的时候就进行了加载    &#x2F;&#x2F;所以线程安全    priva">
+<meta property="og:description" content="java常用设计模式—1单例模式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-04T10:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-04T13:24:15.083Z">
+<meta property="article:modified_time" content="2021-06-04T13:33:50.674Z">
 <meta property="article:author" content="遇见对的人，做对的事">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -175,7 +175,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="java常用设计模式—1"><a href="#java常用设计模式—1" class="headerlink" title="java常用设计模式—1"></a>java常用设计模式—1</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- more --&gt;</span><br></pre></td></tr></table></figure>
+        <h1 id="java常用设计模式—1"><a href="#java常用设计模式—1" class="headerlink" title="java常用设计模式—1"></a>java常用设计模式—1</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><span id="more"></span>
+
 
 <p>一个类的实例只有一个</p>
 <h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test01</span> </span>&#123;   </span><br><span class="line"><span class="comment">//    懒汉式，线程安全    </span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Test01 test01 = <span class="keyword">new</span> Test01();<span class="comment">//因为是静态变量，在类加载的时候就进行了加载    </span></span><br><span class="line"><span class="comment">//所以线程安全    </span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Test01</span><span class="params">()</span></span>&#123;    </span><br><span class="line"><span class="comment">//    构造方法私有    </span></span><br><span class="line">&#125;   </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Test01 <span class="title">getSingleton</span><span class="params">()</span></span>&#123;   </span><br><span class="line"><span class="comment">//        对外提供获得实例的接口       </span></span><br><span class="line"><span class="keyword">return</span> test01;    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
