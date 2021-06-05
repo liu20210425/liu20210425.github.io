@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021/6 | 春江花月夜</title>
+  <title>Design pattern | 春江花月夜</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人技术博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="春江花月夜">
-<meta property="og:url" content="http://example.com/archives/2021/06/index.html">
+  <meta name="description" content="java常用设计模式—2装饰者模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Design pattern">
+<meta property="og:url" content="http://example.com/2021/06/05/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F01/index.html">
 <meta property="og:site_name" content="春江花月夜">
-<meta property="og:description" content="个人技术博客">
+<meta property="og:description" content="java常用设计模式—2装饰者模式">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-05T11:37:00.000Z">
+<meta property="article:modified_time" content="2021-06-05T11:38:23.127Z">
 <meta property="article:author" content="遇见对的人，做对的事">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -153,76 +155,202 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-java常用设计模式01" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Design pattern
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/06/05/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F01/" class="archive-article-date">
+
+        
+        <a href="/2021/06/05/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F01/" class="archive-article-date">
   	<time datetime="2021-06-05T11:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/06/05/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F01/">Design pattern</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java常用设计模式—2"><a href="#java常用设计模式—2" class="headerlink" title="java常用设计模式—2"></a>java常用设计模式—2</h1><h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><span id="more"></span>
 
-        <div class="article-info info-on-right">
-          
-          
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>​    装饰模式又名包装(Wrapper)模式。是一种在不改变原有对象的基础之上，将功能附加到对象上。提供了比继承更有弹性的替代方案（扩展原有对象功能）。</p>
+<p>   装饰者模式能够动态地将责任附加到对象身上的一种设计模式，若要扩展功能，装饰者提供了比继承更有弹性的替代方案，比生成子类更加灵活。通常在继承关系中，为了扩展功能需要新增子类进行扩展，而装饰者模式，可以在不扩展子类的情况下，将对象的功能进行动态的扩展。</p>
+<h3 id="概念分析"><a href="#概念分析" class="headerlink" title="概念分析"></a>概念分析</h3><p>第一层Component：基本组件可以单独使用，可以被装饰者包装起来使用</p>
+<p>第二层ConcreteComponent&amp;Decorator：ConcreteComponent动态加上新行为的对象，Decorator装饰器</p>
+<p>第三层ConcreteDecorator：具体的装饰者，有具体的行为或者新的行为</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h4 id="基本组件"><a href="#基本组件" class="headerlink" title="基本组件"></a>基本组件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Building</span> </span>&#123;     </span><br><span class="line">    <span class="comment">//建筑具有装修功能    </span></span><br><span class="line">    <span class="function">String <span class="title">Decorate</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="两个具体的组件"><a href="#两个具体的组件" class="headerlink" title="两个具体的组件"></a>两个具体的组件</h4><p>公寓</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Apartment</span> <span class="keyword">implements</span> <span class="title">Building</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String furniture;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">Decorate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//公寓的基本装修</span></span><br><span class="line">        furniture = <span class="string">&quot;私人影院 &quot;</span> + <span class="string">&quot;室内花园 &quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> furniture;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>平顶房</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bungalow</span> <span class="keyword">implements</span> <span class="title">Building</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String furniture;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">Decorate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//平顶房的基本装修</span></span><br><span class="line">      furniture = <span class="string">&quot;高脚凳 &quot;</span> + <span class="string">&quot;落地窗 &quot;</span>;</span><br><span class="line">      <span class="keyword">return</span> furniture;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="抽象修饰器"><a href="#抽象修饰器" class="headerlink" title="抽象修饰器"></a>抽象修饰器</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BuildingDecorator</span> <span class="keyword">implements</span> <span class="title">Building</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="具体的修饰器"><a href="#具体的修饰器" class="headerlink" title="具体的修饰器"></a>具体的修饰器</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecorator1</span> <span class="keyword">extends</span> <span class="title">BuildingDecorator</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Building building;</span><br><span class="line">    <span class="keyword">private</span> String scheme1;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteDecorator1</span><span class="params">(Building building, String scheme)</span></span>&#123;</span><br><span class="line">        <span class="comment">//根据需要传入相应的装修样式</span></span><br><span class="line">        <span class="keyword">this</span>.building = building;</span><br><span class="line">        <span class="keyword">this</span>.scheme1 = scheme;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">Decorate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//个性化装修</span></span><br><span class="line">        System.out.println(<span class="string">&quot;装修方式1，添加+ &quot;</span>+scheme1);</span><br><span class="line">        <span class="keyword">return</span> building.Decorate()+<span class="string">&quot; &quot;</span>+scheme1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteDecorator2</span> <span class="keyword">extends</span> <span class="title">BuildingDecorator</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Building building;</span><br><span class="line">    <span class="keyword">private</span> String scheme2;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConcreteDecorator2</span><span class="params">(Building building, String scheme)</span></span>&#123;</span><br><span class="line">        <span class="comment">//根据需要传入相应的装修样式</span></span><br><span class="line">        <span class="keyword">this</span>.building = building;</span><br><span class="line">        <span class="keyword">this</span>.scheme2 = scheme;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">Decorate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//个性化装修</span></span><br><span class="line">        System.out.println(<span class="string">&quot;装修方式2，添加+ &quot;</span>+scheme2);</span><br><span class="line">        <span class="keyword">return</span> building.Decorate()+<span class="string">&quot; &quot;</span>+scheme2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试代码及其结果"><a href="#测试代码及其结果" class="headerlink" title="测试代码及其结果"></a>测试代码及其结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test06</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Building apartment = <span class="keyword">new</span> Apartment();</span><br><span class="line">        apartment = <span class="keyword">new</span> ConcreteDecorator1(apartment,<span class="string">&quot;木质地板&quot;</span>);</span><br><span class="line">        apartment = <span class="keyword">new</span> ConcreteDecorator2(apartment,<span class="string">&quot;羊毛地毯&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;样式一： &quot;</span>+apartment.Decorate());</span><br><span class="line">        Building bungalow = <span class="keyword">new</span> Bungalow();</span><br><span class="line">        bungalow = <span class="keyword">new</span> ConcreteDecorator1(bungalow,<span class="string">&quot;木质地板&quot;</span>);</span><br><span class="line">        bungalow = <span class="keyword">new</span> ConcreteDecorator2(bungalow,<span class="string">&quot;羊毛地毯&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;样式二： &quot;</span>+bungalow.Decorate());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">装修方式<span class="number">2</span>，添加+ 羊毛地毯</span><br><span class="line">装修方式<span class="number">1</span>，添加+ 木质地板</span><br><span class="line">样式一： 私人影院 室内花园  木质地板 羊毛地毯</span><br><span class="line">装修方式<span class="number">2</span>，添加+ 羊毛地毯</span><br><span class="line">装修方式<span class="number">1</span>，添加+ 木质地板</span><br><span class="line">样式二： 高脚凳 落地窗  木质地板 羊毛地毯</span><br></pre></td></tr></table></figure>
+
+<h3 id="模式特点"><a href="#模式特点" class="headerlink" title="模式特点"></a>模式特点</h3><p>相较于继承更加灵活，可以在不改变原来代码的情况下添加新的内容。但是代码量比较大。</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><h3 id="类适配器"><a href="#类适配器" class="headerlink" title="类适配器"></a>类适配器</h3><p>就是将一个类包装成另外一个类</p>
+<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Source</span> </span>&#123;</span><br><span class="line">    <span class="comment">//适配源</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sourceMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//未适配，输出220V电压</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">220</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;    <span class="comment">//适配方法    void targetMethod();&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">extends</span> <span class="title">Source</span> <span class="keyword">implements</span> <span class="title">Target</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">targetMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> result =  <span class="keyword">this</span>.sourceMethod();</span><br><span class="line">        System.out.println(<span class="string">&quot;未适配，输出220V电压&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;适配之后，输出---&gt;&quot;</span> + (result-<span class="number">215</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试代码及结果"><a href="#测试代码及结果" class="headerlink" title="测试代码及结果"></a>测试代码及结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test07</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Adapter adapter = <span class="keyword">new</span> Adapter();</span><br><span class="line">        adapter.targetMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">未适配，输出220V电压</span><br><span class="line">适配之后，输出---&gt;<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="对象适配器"><a href="#对象适配器" class="headerlink" title="对象适配器"></a>对象适配器</h3><h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><p>适配源与适配方法同上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">Target</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Source source;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Adapter</span><span class="params">(Source source)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.source = source;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">targetMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> result =  <span class="keyword">this</span>.source.sourceMethod();</span><br><span class="line">        System.out.println(<span class="string">&quot;未适配，输出220V电压&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;适配之后，输出---&gt;&quot;</span> + (result-<span class="number">215</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试代码及结果-1"><a href="#测试代码及结果-1" class="headerlink" title="测试代码及结果"></a>测试代码及结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test07</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">      Source source = <span class="keyword">new</span> Source();</span><br><span class="line">      Adapter adapter = <span class="keyword">new</span> Adapter(source);</span><br><span class="line">      adapter.targetMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">未适配，输出220V电压</span><br><span class="line">适配之后，输出---&gt;<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>相较于类适配器，对象适配器灵活性更高，可以适配不同的适配源。（将适配源抽象为接口或者抽象类）</p>
+<h3 id="接口适配器"><a href="#接口适配器" class="headerlink" title="接口适配器"></a>接口适配器</h3><p>接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">targetMethod</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">targetMethod1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">targetMethod2</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">targetMethod3</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>抽象类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> <span class="keyword">implements</span> <span class="title">Target</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">targetMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;输出5V&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">targetMethod1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;输出15V&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">targetMethod2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;输出25V&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">targetMethod3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;输出35V&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于比较简单，就不做测试了。</p>
+<p>实体类根据需要，重写或者继承抽象类方法，完成适配。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/06/05/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F01/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/06/04/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-06-04T10:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/06/04/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Design pattern</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/06/04/java%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Design pattern</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -245,8 +373,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
